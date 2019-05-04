@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Weather</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="weather">
+
+  <ion-grid *ngIf="weather">
+
+    <ion-row>
+      <ion-col width-100>
+        <ion-list>
+          <ion-item>
+            <ion-label fixed>Enter City</ion-label>
+            <ion-input (keyup)="getQuery()" [(ngModel)]="searchStr" type="text" value=""></ion-input>
+          </ion-item>
+        </ion-list>
+
+        <ion-list>
+          <ion-item *ngFor="let result of results">
+            <span (click)="chooseCity(result)">{{result.name}}
+            </span>
+          </ion-item>
+        </ion-list>
+
+      </ion-col>
+    </ion-row>
+
+    
+
+
+
+   <ion-row>
+
+      <ion-card  *ngFor="let mou of weather">
+       
+          <ion-card-content>
+            <ion-card-title>
+                {{ mou.name}} 
+              </ion-card-title>
+              <h2 class="desc">{{mou.weather[0].description}}</h2>
+              <h1 class="temp">TEMP: {{mou.main.temp-273.15 | number : '1.2-2' }}&deg;</h1>
+          </ion-card-content>
+        </ion-card>
+      
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
